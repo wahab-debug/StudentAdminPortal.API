@@ -21,7 +21,7 @@ namespace StudentAdminPortal.API.Controllers
         [Route("[Controller]")]
         public async Task<IActionResult> GetAllStudentsAsync()
         {
-          var students=await studentRepository.GetStudentsAsync();
+            var students = await studentRepository.GetStudentsAsync();
             
          // var domainModelStudents = new List<Student>();
 
