@@ -13,6 +13,7 @@ namespace StudentAdminPortal.API.Profiles
             CreateMap<DataModels.Gender, Gender>().ReverseMap();
             CreateMap<DataModels.Address, Address>().ReverseMap();
             CreateMap<UpdateStudentRequest, DataModels.Student>().AfterMap<UpdateStudentRequestAfterMap>();
+            CreateMap<AddStudentRequest, DataModel.Student>().AfterMap<AddStudentRequestAfterMap>();
                 
         }
     }
