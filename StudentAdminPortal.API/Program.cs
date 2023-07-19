@@ -3,6 +3,7 @@ using StudentAdminPortal.API.DataModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using StudentAdminPortal.API.Repositories;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 //builder.Services.AddAutoMapper(typeof(IStartup).Assembly);
 
 builder.Services.AddScoped<IStudentRepository, SqlStudentRepository>();
+builder.Services.AddScoped<IImageRepository, LocalStorageImageRepository>();
 
 var app = builder.Build();
 
@@ -38,6 +40,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Resources")),RequestPath= "/Resources"
+});
 app.UseCors("angularApplication");
 app.UseAuthorization();
 
