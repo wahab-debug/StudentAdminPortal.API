@@ -4,12 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using StudentAdminPortal.API.Repositories;
 using Microsoft.Extensions.FileProviders;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<Program>());
 builder.Services.AddCors((options) => 
 {
     options.AddPolicy("angularApplication", (builder) =>
